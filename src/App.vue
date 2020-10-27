@@ -6,19 +6,16 @@
           :style="{ background: `hsl(${hsla.h},${hsla.s}%,${hsla.l}%)` }"
           class="logo"
         ></div>
-        <p>link to</p>
+        <router-link to="/"><p>link to</p></router-link>
       </div>
       <div id="navHolder">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/Content">Content</router-link>
+        <router-link to="/Projects">Projects</router-link>
+        <router-link to="/About">About</router-link>
       </div>
     </div>
     <div id="displayArea">
-      <router-view :hsla="hsla" />
-      <div></div>
-      <p v-for="(item, index) in query.value.data" :key="index">
-        {{ item.data.title }} {{ item.data.project }}
-      </p>
+      <router-view :projects="query.value" :hsla="hsla" />
     </div>
   </div>
 </template>
@@ -46,10 +43,9 @@ export default defineComponent({
       const client = new faunadb.Client({
         secret: process.env.VUE_APP_KEY
       });
-      console.log(process.env.VUE_APP_KEY);
       const idk = client.query(
         q.Map(
-          q.Paginate(q.Match(q.Index("content_by_project"), "testProject")),
+          q.Paginate(q.Match(q.Index("all_projects"))),
           q.Lambda("X", q.Get(q.Var("X")))
         )
       );

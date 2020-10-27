@@ -13,7 +13,10 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "@types/vue-markdown",
+      "@types/marked",
+      "@types/DOMPurify"
     ],
     "paths": {
       "@/*": [
