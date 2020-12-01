@@ -10,7 +10,7 @@
 import { defineComponent, onMounted, reactive } from "vue";
 import faunadb from "faunadb";
 import marked from "marked";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 import ProjectsContent from "@/components/projects/ProjectsContent.vue";
 export default defineComponent({
   name: "ProjectDisplay",
@@ -52,4 +52,10 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style lang="scss">
+p {
+  img {
+    width: 100%;
+  }
+}
+</style>
