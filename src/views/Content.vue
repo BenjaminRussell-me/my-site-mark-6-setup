@@ -1,20 +1,23 @@
 <template>
   <div>
-    <router-link
+    <link-component
       v-for="(item, index) in query.value.data"
       :key="index"
-      :to="`/Content/ContDisplay?contentName=${item.data.id}`"
-    >
-      {{ item.data.title }}|
-    </router-link>
+      :path="`/Content/ContDisplay?contentName=${item.data.id}`"
+      :title="item.data.title"
+    ></link-component>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from "vue";
 import faunadb from "faunadb";
+import linkComponent from "@/components/linkComponent.vue";
 export default defineComponent({
   name: "Content",
+  components: {
+    linkComponent
+  },
   setup() {
     const q = faunadb.query;
     const query = reactive({ value: {} });

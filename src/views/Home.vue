@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1>h1</h1>
-    <h2>h2</h2>
-    <h3>h3</h3>
-    <h4>h4</h4>
-    <h5>h5</h5>
-    <p>p</p>
+    <h1>HI</h1>
+    <h2>HI</h2>
+    <h3>HI</h3>
+    <h4>HI</h4>
+    <h5>HI</h5>
+    <p>HI</p>
     <ul>
-      <li>li</li>
+      <li>HI</li>
     </ul>
-    <button>button</button>
+    <button>HI</button>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "Home",
   props: {
-    hsla: {
+    theme: {
       type: Object
     }
   }

@@ -1,23 +1,25 @@
 <template>
   <div>
-    <router-link
+    <link-component
       v-for="(item, index) in projects.data"
       :key="index"
-      :to="`/Projects/Project?projectName=${item.data.id}`"
-    >
-      <div>
-        {{ item.data.title }}
-      </div>
-    </router-link>
+      :path="`/Projects/Project?projectName=${item.data.id}`"
+      :title="item.data.title"
+    ></link-component>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import linkComponent from "@/components/linkComponent.vue";
 export default defineComponent({
   name: "Projects",
+  components: { linkComponent },
   props: {
     projects: {
+      type: Object
+    },
+    theme: {
       type: Object
     }
   },
