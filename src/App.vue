@@ -168,6 +168,10 @@ html {
     height: 100%;
     padding: 1rem;
     box-sizing: border-box;
+    @media screen and (max-width: 1080px) {
+      height: auto;
+      width: 100vw;
+    }
   }
   #navArea {
     display: grid;
@@ -177,6 +181,12 @@ html {
     position: fixed;
     box-sizing: border-box;
     border-right: 1px solid black;
+    @media screen and (max-width: 1080px) {
+      height: auto;
+      width: 100vw;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
     #logoHolder {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -200,6 +210,9 @@ html {
     box-shadow: 0 0 5px 3px black;
     padding: 1rem 1rem 4rem 1rem;
     margin: 1rem 0 1rem 0;
+    @media screen and (max-width: 1080px) {
+    width: 100%;
+    }
   }
 }
 $textMargin: clamp(0.5rem, 1vw / 2.7, 1rem);

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <hexagon :theme="theme"></hexagon>
     <h1>HI</h1>
     <h2>HI</h2>
     <h3>HI</h3>
@@ -15,9 +16,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Hexagon from "@/components/hexagon.vue";
 
 export default defineComponent({
   name: "Home",
+  components: {Hexagon},
   props: {
     theme: {
       type: Object
