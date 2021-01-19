@@ -8,47 +8,22 @@
     <div id="backgroundHolder">
       <background></background>
     </div>
-    <div id="navPlaceholder">
-      <div id="navArea">
-        <div id="logoHolder">
-          <div
-            :style="{
-              background: `hsl(${themes.dark.hsla.h},${themes.dark.hsla.s}%,${themes.dark.hsla.l}%)`
-            }"
-            class="logo"
-          ></div>
-          <link-component
-            :path="'/'"
-            :title="'link to'"
-            :theme="themes.dynamicTheme"
-          >
-          </link-component>
+    <div id="contentHolder">
+      <div id="topGrid">
+        <div>
+          <h4>logo area</h4>
         </div>
-        <div id="navHolder">
-          <link-component
+        <nav-menu
             :theme="themes.dynamicTheme"
-            path="/Projects"
-            title="Projects"
-          ></link-component>
-          <link-component
-            :theme="themes.dynamicTheme"
-            path="/Content"
-            title="Content"
-          ></link-component>
-          <link-component
-            :theme="themes.dynamicTheme"
-            path="/About"
-            title="About"
-          ></link-component>
-        </div>
+        ></nav-menu>
       </div>
-    </div>
-    <div id="displayArea">
-      <router-view
-        :theme="themes.dynamicTheme"
-        :projects="query.value"
-        :hsla="themes.dark.hsla"
-      />
+      <div id="displayArea">
+        <router-view
+            :theme="themes.dynamicTheme"
+            :projects="query.value"
+            :hsla="themes.dark.hsla"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +32,7 @@
 import { defineComponent, onMounted, reactive, computed } from "vue";
 import faunadb from "faunadb";
 import Background from "@/components/background.vue";
-import linkComponent from "@/components/linkComponent.vue";
+import navMenu from "@/components/navMenu.vue";
 interface Hsla {
   h: number;
   s: number;
@@ -81,7 +56,7 @@ interface Content {
   title: string;
 }
 export default defineComponent({
-  components: { Background, linkComponent },
+  components: { Background, navMenu },
   setup() {
     const q = faunadb.query;
     const themes: Themes = reactive({
@@ -154,7 +129,7 @@ html {
 }
 #mainGrid {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
@@ -163,55 +138,28 @@ html {
   @media (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
-  #navPlaceholder {
-    width: 25vw;
-    height: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
-    @media screen and (max-width: 1080px) {
-      height: auto;
-      width: 100vw;
-    }
+  #topGrid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
   }
-  #navArea {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    width: 25vw;
-    height: 96vh;
-    position: fixed;
-    box-sizing: border-box;
-    border-right: 1px solid black;
-    @media screen and (max-width: 1080px) {
-      height: auto;
-      width: 100vw;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-    }
-    #logoHolder {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      .logo {
-        height: 30px;
-        width: 30px;
-        background-color: blue;
-      }
-    }
-    #navHolder {
-      align-self: end;
-    }
+  #contentHolder{
+    justify-self: center;
+    width: 90%;
   }
   #displayArea {
     justify-self: center;
-    width: 85%;
     backdrop-filter: blur(3px);
     box-sizing: border-box;
     background: hsla(100, 100%, 100%, 0.2);
-    box-shadow: 0 0 5px 3px black;
+    box-shadow: 0 0 5px 3px;
     padding: 1rem 1rem 4rem 1rem;
     margin: 1rem 0 1rem 0;
+    height: 85%;
+    overflow-y: scroll;
     @media screen and (max-width: 1080px) {
-    width: 100%;
+      width: 100%;
     }
   }
 }

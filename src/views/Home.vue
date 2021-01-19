@@ -1,6 +1,8 @@
 <template>
   <div>
-    <hexagon :theme="theme"></hexagon>
+    <div class="holder">
+      <hexagon :theme="theme"></hexagon>
+    </div>
     <h1>HI</h1>
     <h2>HI</h2>
     <h3>HI</h3>
@@ -28,3 +30,10 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped lang="scss">
+.holder{
+  width: 150px;
+  height: 150px;
+}
+</style>

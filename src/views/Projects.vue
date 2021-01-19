@@ -1,20 +1,23 @@
 <template>
   <div>
-    <link-component
+    <decorated-link
       v-for="(item, index) in projects.data"
       :key="index"
       :path="`/Projects/Project?projectName=${item.data.id}`"
       :title="item.data.title"
-    ></link-component>
+      :theme="theme"
+      :id-edit="index"
+      :date="item.data.date"
+    ></decorated-link>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import linkComponent from "@/components/linkComponent.vue";
+import decoratedLink from "@/components/decoratedLink.vue";
 export default defineComponent({
   name: "Projects",
-  components: { linkComponent },
+  components: { decoratedLink },
   props: {
     projects: {
       type: Object
