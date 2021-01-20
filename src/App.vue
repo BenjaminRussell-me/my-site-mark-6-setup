@@ -155,15 +155,16 @@ html {
     background: hsla(100, 100%, 100%, 0.2);
     box-shadow: 0 0 5px 3px;
     padding: 1rem 1rem 4rem 1rem;
-    margin: 1rem 0 1rem 0;
-    height: 85%;
-    overflow-y: scroll;
+    margin: 2rem 0 1rem 0;
+    height: 85vh;
+    overflow-y: auto;
     @media screen and (max-width: 1080px) {
       width: 100%;
+      height: 80vh;
     }
   }
 }
-$textMargin: clamp(0.5rem, 1vw / 2.7, 1rem);
+$textMargin: clamp(0.1em, 1vw / 2.7, 0.5em);
 
 h1,
 h2,

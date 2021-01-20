@@ -9,7 +9,7 @@
       <g>
         <polygon
           :style="{
-            fill: `hsl(${theme.hsla.h + hueSkew},${theme.hsla.s}%,${theme.hsla.l}%)`
+            fill: `hsl(${theme.hsla.h + hueSkew},${theme.hsla.s}%,0%)`
           }"
           class="cls-1"
           points="145.2 491 4.62 247.5 145.2 4 426.37 4 566.96 247.5 426.37 491 145.2 491"

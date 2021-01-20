@@ -14,8 +14,7 @@ export default defineComponent({
   name: "ContentDisplay",
   props: {
     contentName: {
-      type: String, //comes from vue router
-      require
+      type: String //comes from vue router
     }
   },
   setup(props) {

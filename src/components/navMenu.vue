@@ -1,21 +1,20 @@
 <template>
-
   <div id="menuHolder">
-<button id="navControl" @click="menu.open = !menu.open">x</button>
-  <div id="menuBox" v-if="menu.open">
-    <div>
-      <link-component path="/" title="Home"></link-component> |
-      <link-component path="/Projects" title="Projects"></link-component> |
-      <link-component path="/Content" title="Content"></link-component> |
-      <link-component path="/About" title="About"></link-component>
+    <button id="navControl" @click="menu.open = !menu.open">x</button>
+    <div id="menuBox" v-if="menu.open">
+      <div>
+        <link-component path="/" title="Home"></link-component> |
+        <link-component path="/Projects" title="Projects"></link-component> |
+        <link-component path="/Content" title="Content"></link-component> |
+        <link-component path="/About" title="About"></link-component>
+      </div>
+      <div>
+        dynamic
+      </div>
+      <div>
+        theme controls
+      </div>
     </div>
-    <div>
-      dynamic
-    </div>
-    <div>
-    theme controls
-    </div>
-  </div>
   </div>
 </template>
 
@@ -25,7 +24,7 @@ import linkComponent from "@/components/linkComponent.vue";
 export default defineComponent({
   name: "navMenu",
   components: { linkComponent },
-  props:{
+  props: {
     theme: {
       type: Object
     }
@@ -40,19 +39,18 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-
-#menuHolder{
-position: relative;
+#menuHolder {
+  position: relative;
   z-index: 100;
   display: grid;
   width: 300px;
 
   height: 49px;
 }
-#menuBox{
+#menuBox {
   position: absolute;
   background: hsla(100, 100%, 0%, 0.9);
-  width: clamp(200px, 10 * 1vw / 2, 400px);
+  width: 400px;
   min-height: 500px;
   margin-right: 2rem;
   margin-top: 2rem;
@@ -61,14 +59,17 @@ position: relative;
   box-sizing: border-box;
   justify-self: end;
   overflow: hidden;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 }
-#navControl{
+#navControl {
   position: absolute;
   border-radius: 360px;
   justify-self: end;
   z-index: 200;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   background: hsla(100, 100%, 0%, 1);
   border: none;
   box-shadow: 0 0 5px 3px black;
@@ -76,7 +77,7 @@ position: relative;
   margin: 0;
   cursor: pointer;
   grid-area: 1/1/1/1;
-  &:focus{
+  &:focus {
     outline: none;
   }
 }
