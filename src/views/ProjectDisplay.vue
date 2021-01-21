@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="project">
     <h1>{{ query.value?.data?.title }}</h1>
     <ProjectsContent :projectName="projectName"></ProjectsContent>
     <div v-html="markdown.text"></div>
@@ -53,6 +53,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+#project{
+  max-width: 1000px;
+  justify-self: center;
+}
 p {
   img {
     width: 100%;

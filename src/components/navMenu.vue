@@ -1,6 +1,16 @@
 <template>
   <div id="menuHolder">
-    <button id="navControl" @click="menu.open = !menu.open">x</button>
+    <button id="navControl"   :style="{
+        background: `linear-gradient( to right, hsl(${theme.hsla.h},${
+          theme.hsla.s
+        }%,${theme.hsla.l}%), hsl(${theme.hsla.h - 23},${theme.hsla.s}%,${
+          theme.hsla.l
+        }%))`
+      }"
+      @click="menu.open = !menu.open"
+    >
+      x
+    </button>
     <div id="menuBox" v-if="menu.open">
       <div>
         <link-component path="/" title="Home"></link-component> |
@@ -43,7 +53,7 @@ export default defineComponent({
   position: relative;
   z-index: 100;
   display: grid;
-  width: 300px;
+  width: 100px;
 
   height: 49px;
 }
@@ -60,7 +70,7 @@ export default defineComponent({
   justify-self: end;
   overflow: hidden;
   @media (max-width: 640px) {
-    width: 100%;
+    width: 250px;
   }
 }
 #navControl {
@@ -70,7 +80,6 @@ export default defineComponent({
   z-index: 200;
   height: 50px;
   width: 50px;
-  background: hsla(100, 100%, 0%, 1);
   border: none;
   box-shadow: 0 0 5px 3px black;
   color: white;

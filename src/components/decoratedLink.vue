@@ -4,8 +4,17 @@
       <hexagon :id-edit="idEdit" :theme="theme"></hexagon>
     </div>
     <div>
-      <link-component :theme="theme" :title="title" :path="path"></link-component>
-      <div class="line" :style="{background: `hsl(${theme.textColor.h},${theme.textColor.s}%,${theme.textColor.l}%)`}"></div>
+      <link-component
+        :theme="theme"
+        :title="title"
+        :path="path"
+      ></link-component>
+      <div
+        class="line"
+        :style="{
+          background: `hsl(${theme.textColor.h},${theme.textColor.s}%,${theme.textColor.l}%)`
+        }"
+      ></div>
       <p>{{ date }}</p>
     </div>
   </div>
@@ -22,22 +31,22 @@ export default defineComponent({
     linkComponent
   },
   props: {
-    title:{
+    title: {
       type: String
     },
-    path:{
+    path: {
       type: String
     },
-    date:{
+    date: {
       type: String
     },
-    img:{
+    img: {
       type: String
     },
-    theme:{
+    theme: {
       type: Object
     },
-    idEdit:{
+    idEdit: {
       type: Number
     }
   }
@@ -45,17 +54,17 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.decLink{
+.decLink {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
   grid-gap: 1rem;
 }
-.hexHolder{
-  height: 150px;
-  width: 150px;
+.hexHolder {
+  height: 50px;
+  width: 50px;
 }
-.line{
+.line {
   height: 2px;
 }
 </style>

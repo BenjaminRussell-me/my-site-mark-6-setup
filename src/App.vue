@@ -6,23 +6,36 @@
     }"
   >
     <div id="backgroundHolder">
-      <background></background>
+      <background :theme="themes.dynamicTheme"></background>
+      <div id="backgroundMuter"></div>
     </div>
     <div id="contentHolder">
       <div id="topGrid">
         <div>
           <h4>logo area</h4>
         </div>
-        <nav-menu
-            :theme="themes.dynamicTheme"
-        ></nav-menu>
+        <nav-menu :theme="themes.dynamicTheme"></nav-menu>
       </div>
       <div id="displayArea">
-        <router-view
+        <div
+          id="displayLine"
+          :style="{
+            background: `linear-gradient( to right, hsl(${
+              themes.dynamicTheme.hsla.h
+            },${themes.dynamicTheme.hsla.s}%,${
+              themes.dynamicTheme.hsla.l
+            }%), hsl(${themes.dynamicTheme.hsla.h - 23},${
+              themes.dynamicTheme.hsla.s
+            }%,${themes.dynamicTheme.hsla.l}%))`
+          }"
+        ></div>
+        <div id="displayContent">
+          <router-view
             :theme="themes.dynamicTheme"
             :projects="query.value"
             :hsla="themes.dark.hsla"
-        />
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -69,8 +82,8 @@ export default defineComponent({
         }
       }),
       light: {
-        hsla: { h: 185, s: 100, l: 45, a: 1 },
-        accent: { h: 185, s: 100, l: 45, a: 1 },
+        hsla: { h: 208, s: 70, l: 40, a: 1 },
+        accent: { h: 166, s: 70, l: 40, a: 1 },
         textColor: { h: 185, s: 100, l: 10, a: 1 },
         isDark: false
       },
@@ -126,6 +139,14 @@ html {
   z-index: -1;
   width: 100vw;
   height: 100vh;
+  display: grid;
+  #backgroundMuter {
+    height: 100%;
+    width: 100%;
+    grid-area: 1/1/1/1;
+    background: hsla(100, 0%, 100%, 0.6);
+    backdrop-filter: brightness(100%);
+  }
 }
 #mainGrid {
   display: grid;
@@ -134,7 +155,7 @@ html {
   height: 100vh;
   box-sizing: border-box;
   grid-gap: 1rem;
-  overflow-x:hidden;
+  overflow-x: hidden;
   @media (max-width: 1080px) {
     grid-template-columns: 1fr;
   }
@@ -144,23 +165,33 @@ html {
     align-items: center;
     margin-top: 1rem;
   }
-  #contentHolder{
+  #contentHolder {
     justify-self: center;
     width: 90%;
   }
   #displayArea {
     justify-self: center;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
     box-sizing: border-box;
-    background: hsla(100, 100%, 100%, 0.2);
+    background: hsla(100, 100%, 100%, 0.5);
     box-shadow: 0 0 5px 3px;
-    padding: 1rem 1rem 4rem 1rem;
-    margin: 2rem 0 1rem 0;
+
+    margin: 1rem 0 1rem 0;
     height: 85vh;
     overflow-y: auto;
+    display: grid;
+    grid-template-rows: auto 1fr;
     @media screen and (max-width: 1080px) {
       width: 100%;
       height: 80vh;
+    }
+    #displayLine {
+      height: 5px;
+      background: linear-gradient(to right, red, blue);
+    }
+    #displayContent {
+      padding: 1rem 1rem 4rem 1rem;
+      display: grid;
     }
   }
 }
