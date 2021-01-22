@@ -53,7 +53,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#project{
+#project {
   max-width: 1000px;
   justify-self: center;
 }

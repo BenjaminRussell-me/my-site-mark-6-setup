@@ -16,7 +16,8 @@
         />
         <path
           :style="{
-            fill: `hsl(${theme.hsla.h + hueSkew},${theme.hsla.s}%,${theme.hsla.l - 10}%)`
+            fill: `hsl(${theme.hsla.h + hueSkew},${theme.hsla.s}%,${theme.hsla
+              .l - 10}%)`
           }"
           class="cls-2"
           d="M424.06,8,562.34,247.5,424.06,487H147.51L9.24,247.5,147.51,8H424.06m4.62-8H142.89L0,247.5,142.89,495H428.68l142.9-247.5L428.68,0Z"
@@ -84,7 +85,7 @@ export default defineComponent({
       type: Number,
       default: 0
     },
-    hueSkew:{
+    hueSkew: {
       type: Number,
       default: 0
     }
@@ -120,8 +121,8 @@ export default defineComponent({
               hex.style.cssText = `margin-top:${getRandomPercentage()}%;margin-left:${getRandomPercentage()}%`;
             } else {
               hex.style.cssText = `margin-top:${getRandomPercentage() +
-              getRandomPercentage()}%;margin-left:${getRandomPercentage() +
-              getRandomPercentage()}%`;
+                getRandomPercentage()}%;margin-left:${getRandomPercentage() +
+                getRandomPercentage()}%`;
             }
           }
         }, i * 500);

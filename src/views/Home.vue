@@ -16,8 +16,8 @@
           developer / designer
         </h5>
         <h5>
-          Want to know more? Come learn more
-          <link-component path="/About">About Me</link-component>
+          Want to know more? Find out more
+          <link-component path="/About">About Me!</link-component>
         </h5>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-#blocksHolder{
+#blocksHolder {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 0.5vw;

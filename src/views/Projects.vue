@@ -7,7 +7,10 @@
         :key="index"
         :path="`/Projects/Project?projectName=${item.data.id}`"
       >
-        <router-link :to="`/Projects/Project?projectName=${item.data.id}`" class="hexContent">
+        <router-link
+          :to="`/Projects/Project?projectName=${item.data.id}`"
+          class="hexContent"
+        >
           <h5>{{ item.data.title }}</h5>
           <p>{{ item.data.date }}</p>
         </router-link>
@@ -53,7 +56,7 @@ $amount: 4;
   padding: 0;
   grid-gap: 2.5rem 5rem;
 }
-.hexItem{
+.hexItem {
   position: relative;
   grid-column: 1 / span 3;
   grid-row: calc(var(--counter) + var(--counter)) / span 2;
@@ -76,7 +79,7 @@ $amount: 4;
   }
 }
 
-.hexContent{
+.hexContent {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -95,5 +98,4 @@ $amount: 4;
   transition: transform 0.24s ease-out;
   box-sizing: border-box;
 }
-
 </style>

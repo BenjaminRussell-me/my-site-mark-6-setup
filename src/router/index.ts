@@ -23,6 +23,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/Projects.vue")
   },
   {
+    path: "/Contact",
+    name: "Contact",
+    component: () => import("../views/Contact.vue")
+  },
+  {
+    path: "/Resume",
+    name: "Resume",
+    component: () => import("../views/Resume.vue")
+  },
+  {
     path: "/Projects/Project",
     name: "ProjectDisplay",
     props: route => ({ projectName: route.query.projectName }),

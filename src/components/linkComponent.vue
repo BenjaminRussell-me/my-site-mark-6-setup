@@ -11,8 +11,7 @@
         '-webkit-text-fill-color': 'transparent'
       }"
       >{{ title }}<slot></slot></span
-    ></router-link
-  >
+  ></router-link>
 </template>
 
 <script lang="ts">

@@ -34,7 +34,12 @@
             :theme="themes.dynamicTheme"
             :projects="query.value"
             :hsla="themes.dark.hsla"
-          />
+            v-slot="{ Component }"
+          >
+            <transition name="switch" mode="out-in">
+              <component :is="Component"></component>
+            </transition>
+          </router-view>
         </div>
       </div>
     </div>
@@ -117,6 +122,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.switch-enter-active,
+.switch-leave-active {
+  transition: opacity 1s;
+}
+.switch-enter,
+.switch-leave-to {
+  opacity: 0;
+}
 @font-face {
   font-family: "IBM Plex Sans";
   src: url("../node_modules/@ibm/plex/IBM-Plex-Sans-Variable/fonts/complete/ttf/IBMPlexSansVar-Roman.ttf");

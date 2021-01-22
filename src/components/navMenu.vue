@@ -1,6 +1,8 @@
 <template>
   <div id="menuHolder">
-    <button id="navControl"   :style="{
+    <button
+      id="navControl"
+      :style="{
         background: `linear-gradient( to right, hsl(${theme.hsla.h},${
           theme.hsla.s
         }%,${theme.hsla.l}%), hsl(${theme.hsla.h - 23},${theme.hsla.s}%,${
