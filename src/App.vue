@@ -11,8 +11,9 @@
     </div>
     <div id="contentHolder">
       <div id="topGrid">
-        <div>
-          <h4>logo area</h4>
+        <div id="logoHolder">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 230.71 265.71"><defs>
+          <linearGradient id="linear-gradient" x1="-9.36" y1="157.29" x2="240.07" y2="108.43" gradientTransform="translate(-36.45 43.89) rotate(-18.66)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#448abf"/><stop offset="0.61" stop-color="#44a6af"/><stop offset="1" stop-color="#44bba3"/></linearGradient></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon class="cls-1" points="115.92 5.77 5.58 68.82 5.01 195.91 114.79 259.94 225.13 196.89 225.7 69.81 115.92 5.77"/><polygon class="cls-2" points="115.92 5.77 5.58 68.82 5.01 195.91 114.79 259.94 225.13 196.89 225.7 69.81 115.92 5.77"/><path class="cls-3" d="M176.8,155.86a63,63,0,0,1-121.9,0Z"/><circle class="cls-3" cx="175.85" cy="106.86" r="17"/><circle class="cls-3" cx="55.85" cy="105.86" r="17"/></g></g></svg>
         </div>
         <nav-menu :theme="themes.dynamicTheme"></nav-menu>
       </div>
@@ -264,5 +265,19 @@ input {
 em {
   font-family: IBM Plex Sans Italic, sans-serif;
   font-style: italic;
+}
+</style>
+
+<style scoped lang="scss">
+.cls-1{fill:url(#linear-gradient);}.cls-2{fill:none;stroke:#323941;stroke-miterlimit:10;stroke-width:10px;}.cls-3{fill:#323941;}
+#logoHolder{
+  align-self: center;
+  height: 70px;
+  width: 70px;
+  display: grid;
+  place-items: center;
+  svg{
+    height: 100%;
+  }
 }
 </style>
