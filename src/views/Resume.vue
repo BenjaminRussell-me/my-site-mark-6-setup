@@ -1,6 +1,7 @@
 <template>
   <div id="resumeHolder">
     <button @click="print">print</button>
+    <div id="resumePrint">
     <div id="resume">
       <div id="resumeTop" class="dark">
         <div id="resumeName">
@@ -54,6 +55,7 @@
       </div>
       <div id="resumeFooter"></div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -66,38 +68,36 @@ export default {
       for (const node of [...document.querySelectorAll('link[rel="stylesheet"], style')]) {
         stylesHtml += node.outerHTML;
       }
-      const prtContent = document.querySelector("#resume");
+      const prtContent = document.querySelector("#resumePrint");
       const winPrint = window.open(
         "",
         "",
         "left=0,top=0,width=612,height=792,toolbar=0,scrollbars=0,status=0"
       );
-      if (winPrint !== null && prtContent !== null) {
-        const printHtml = prtContent.innerHTML;
-        console.log(printHtml);
-        winPrint.document.write(`
+        const printHtml = prtContent?.innerHTML;
+        winPrint?.document.write(`
         <!DOCTYPE html>
-          <html lang="eng">
+          <html lang="en">
             <head>
               ${stylesHtml}
-            <title>Benjamin Russell Print Resume</title>
             </head>
             <body>
-              ${printHtml}
+               ${printHtml}
             </body>
           </html>
         `);
-        winPrint.document.close();
-        winPrint.focus();
-        winPrint.print();
-        winPrint.close();
-      }
+        winPrint?.document.close();
+        winPrint?.focus();
+        winPrint?.print();
+        // winPrint?.close();
+     
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
+
 .bg {
   background: linear-gradient(to right, #0c64b0, #04bc95) fixed;
 }
@@ -121,10 +121,12 @@ export default {
   display: grid;
   justify-items: center;
 }
+#resumePrint{
+  box-shadow: 0 0 5px 3px black;
+}
 #resume {
   -webkit-print-color-adjust: exact;
-  border: 2px solid red;
-  display: grid;
+  display: grid !important;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-column-gap: 1rem;
@@ -132,9 +134,6 @@ export default {
   height: 11in;
   background: white;
   color: hsl(208, 13%, 23%);
-  @media print {
-    -webkit-print-color-adjust: exact;
-  }
 }
 #resumeBody {
   height: 100%;
