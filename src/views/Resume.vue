@@ -1,6 +1,6 @@
 <template>
   <div id="resumeHolder">
-    <button @click="print">print</button>
+    <button @click="print" id="printButton" class="bg">Click to print</button>
     <div id="resumePrint">
     <div id="resume">
       <div id="resumeTop" class="dark">
@@ -54,6 +54,7 @@
           <div>
             <h3>Experience</h3>
             <h5>Hoglund Advertising and Analytics 2019 - Present</h5>
+            <p><em>Web developer and designer</em></p>
             <ul>
                 <li>Create and manage internal Css framework</li>
                 <li>Create and manage internal reusable javascript components</li>
@@ -81,7 +82,7 @@
         animation UI and more. To create functionally beautiful products.
       </p>
       <p>
-        Wanna work on something together? Let me know! I'm always down for a new
+        Wanna work on something together? Let me know! I'm always down for a
         interesting challenge.
       </p>
         </div>
@@ -172,6 +173,9 @@ margin: 0.5rem 0 0 0;
     width: 100%;
     height: 3px;
   }
+  .dark{
+    margin-top: -1px;
+  }
 }
 
 #resumeHolder {
@@ -198,7 +202,7 @@ margin: 0.5rem 0 0 0;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto 1fr auto;
   grid-column-gap: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   box-sizing: border-box;
 }
 #resumeTop {
@@ -206,7 +210,7 @@ margin: 0.5rem 0 0 0;
   color: white;
   grid-column-gap: 1rem;
   display: grid;
-  padding: 8rem 1rem 1rem 1rem;
+  padding: 6rem 2rem 1rem 2rem;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: end;
   align-self: start;
@@ -413,5 +417,17 @@ input {
 em {
   font-family: IBM Plex Sans Italic, sans-serif;
   font-style: italic;
+}
+
+#printButton{
+  padding: 0.5rem 5rem 0.5rem 5rem;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 5px 3px black;
+  margin: 0 0 1rem 0;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
 }
 </style>

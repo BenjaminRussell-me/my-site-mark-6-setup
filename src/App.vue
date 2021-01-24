@@ -193,7 +193,6 @@ html {
 
     margin: 1rem 0 1rem 0;
     height: 85vh;
-    overflow-y: auto;
     display: grid;
     grid-template-rows: auto 1fr;
     @media screen and (max-width: 1080px) {
@@ -205,13 +204,13 @@ html {
       background: linear-gradient(to right, red, blue);
     }
     #displayContent {
+          overflow-y: auto;
       padding: 1rem 1rem 4rem 1rem;
       display: grid;
     }
   }
 }
 $textMargin: clamp(0.1em, 1vw / 2.7, 0.5em);
-
 h1,
 h2,
 h3,
