@@ -14,15 +14,56 @@
         interesting challenge.
       </p>
     </div>
-    <link-component path="/Resume">Resume</link-component>
+    <div id="socialMedia">
+      <router-link :to="'/Resume'">
+        <button class="contactButton" :style="gradient">
+          Resume
+        </button>
+      </router-link>
+      <div id="socialButtonGrid">
+        <social-button :icon="0"></social-button>
+        <social-button
+          :color="{ h: 194, s: 82, l: 30 }"
+          :icon="1"
+        ></social-button>
+        <social-button
+          :color="{ h: 180, s: 82, l: 30 }"
+          :icon="2"
+        ></social-button>
+        <social-button
+          :color="{ h: 165, s: 82, l: 30 }"
+          :icon="3"
+        ></social-button>
+      </div>
+      <button class="contactButton" :style="gradient">
+        Contact
+      </button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import linkComponent from "@/components/linkComponent.vue";
 import { defineComponent } from "vue";
+import socialButton from "@/components/socialButton.vue";
 export default defineComponent({
-  components: { linkComponent }
+  components: { socialButton },
+  props: {
+    theme: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    const gradient = {
+      theme: props.theme,
+      background: `linear-gradient( to right, hsl(${props.theme.hsla.h},${
+        props.theme.hsla.s
+      }%,${props.theme.hsla.l}%), hsl(${props.theme.hsla.h - 23},${
+        props.theme.hsla.s
+      }%,${props.theme.hsla.l}%))`
+    };
+    return { gradient };
+  }
 });
 </script>
 
@@ -31,5 +72,21 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 3rem;
+  align-self: center;
+}
+#socialButtonGrid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 300px;
+}
+.contactButton {
+  width: 100%;
+  padding: 1rem 0 1rem 0;
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
 }
 </style>

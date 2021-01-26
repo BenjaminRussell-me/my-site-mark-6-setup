@@ -53,7 +53,7 @@
         <div id="resumeExperience">
           <div>
             <h3>Experience</h3>
-            <h5>Hoglund Advertising and Analytics 2019 - Present</h5>
+            <h5>Hoglund Advertising and Analytics 2018 - Present</h5>
             <p><em>Web developer and designer</em></p>
             <ul>
                 <li>Create and manage internal Css framework</li>
@@ -285,7 +285,7 @@ margin: 0.5rem 0 0 0;
     width: 10px;
     margin-left: 15%;
     height: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     background: hsl(202, 88%, 36%);
   }
     .spike3{
@@ -320,7 +320,7 @@ margin: 0.5rem 0 0 0;
     width: 15px;
     margin-left: 68%;
     height: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     background: hsl(179, 92%, 33%);
   }
     .spike8{
@@ -343,7 +343,7 @@ margin: 0.5rem 0 0 0;
     margin-left: 96%;
     height: 10px;
     margin-bottom: 20px;
-    background: hsl(168, 96%, 37%); 
+    background: hsl(168, 96%, 37%);
   }
   #bars{
     display: grid;
