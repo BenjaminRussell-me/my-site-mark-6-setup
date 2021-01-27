@@ -89,53 +89,6 @@ export default defineComponent({
       type: Number,
       default: 0
     }
-  },
-  setup(props) {
-    const hexPosition = reactive({});
-    function getSize() {
-      const holder: HTMLElement | null = document.querySelector(
-        `#hexHolder${props.idEdit}`
-      );
-      const width: number | undefined = holder?.offsetWidth;
-    }
-    function getRandomPercentage() {
-      return Math.floor(Math.random() * Math.floor(40));
-    }
-    function getPosition() {
-      const littleHex: HTMLElement | null = document.querySelector(
-        `#little1${props.idEdit}`
-      );
-      const littleHex2: HTMLElement | null = document.querySelector(
-        `#little2${props.idEdit}`
-      );
-      const hexes = [littleHex, littleHex2];
-      let counter = 0;
-      hexes.forEach((hex, i) => {
-        setTimeout(() => {
-          counter++;
-          if (!hex?.classList.contains("animate")) {
-            hex?.classList.add("animate");
-          }
-          if (hex !== null) {
-            if (counter === 2) {
-              hex.style.cssText = `margin-top:${getRandomPercentage()}%;margin-left:${getRandomPercentage()}%`;
-            } else {
-              hex.style.cssText = `margin-top:${getRandomPercentage() +
-                getRandomPercentage()}%;margin-left:${getRandomPercentage() +
-                getRandomPercentage()}%`;
-            }
-          }
-        }, i * 500);
-      });
-      setTimeout(() => {
-        window.requestAnimationFrame(getPosition);
-      }, 4000);
-    }
-
-    onMounted(() => {
-      getPosition();
-    });
-    return { hexPosition };
   }
 });
 </script>

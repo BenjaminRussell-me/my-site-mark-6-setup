@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div id="content">
+    <router-link :to="'/Content'">
+    <button>back</button>
+    </router-link>
     <h1>{{ query.value?.data?.title }}</h1>
     <div>
       <p>{{ query.value?.data?.about }}</p>
@@ -38,4 +41,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+#content {
+  max-width: 1000px;
+  justify-self: center;
+}
+</style>

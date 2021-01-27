@@ -1,22 +1,30 @@
 <template>
   <div>
-    <link-component
+    <decorated-link
       v-for="(item, index) in query.value.data"
       :key="index"
       :path="`/Content/ContDisplay?contentName=${item.data.id}`"
+      :date="item.data.date"
       :title="item.data.title"
-    ></link-component>
+      :theme="theme"
+    >
+    </decorated-link>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from "vue";
 import faunadb from "faunadb";
-import linkComponent from "@/components/linkComponent.vue";
+import decoratedLink from "@/components/decoratedLink.vue";
 export default defineComponent({
   name: "Content",
   components: {
-    linkComponent
+    decoratedLink
+  },
+  props:{
+    theme:{
+      type: Object
+    }
   },
   setup() {
     const q = faunadb.query;
