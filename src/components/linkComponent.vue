@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="path"
+  <router-link :to="path" @click="$emit('clicked')"
     ><span
       :style="{
         background: `linear-gradient( to right, hsl(${theme.hsla.h},${

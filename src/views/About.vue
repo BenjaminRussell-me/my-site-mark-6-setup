@@ -21,7 +21,9 @@
         </button>
       </router-link>
       <div id="socialButtonGrid">
-        <social-button :icon="0"></social-button>
+        <social-button :icon="0">
+
+        </social-button>
         <social-button
           :color="{ h: 194, s: 82, l: 30 }"
           :icon="1"
@@ -85,8 +87,19 @@ export default defineComponent({
   padding: 1rem 0 1rem 0;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 3px 1px black;
   &:focus {
     outline: none;
+  }
+  &:active{
+    transition: 0.01s !important;
+    transform: scale(0.99) !important;
+    box-shadow: 0 0 1px 1px black !important;
+  }
+  &:hover{
+    transform: scale(1.02);
+    box-shadow: 0 0 6px 3px black;
   }
 }
 </style>
