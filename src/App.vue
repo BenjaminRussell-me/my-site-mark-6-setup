@@ -36,7 +36,9 @@
           </svg>
           <h5>BenajminRussell.me</h5>
         </div>
-        <nav-menu :theme="themes.dynamicTheme"></nav-menu>
+        <keep-alive>
+          <nav-menu :theme="themes.dynamicTheme"></nav-menu>
+        </keep-alive>
       </div>
       <div id="displayArea">
         <div
@@ -58,8 +60,8 @@
             :hsla="themes.dark.hsla"
             v-slot="{ Component }"
           >
-            <transition name="switch" mode="out-in">
-              <component :is="Component"></component>
+            <transition name="fade" mode="out-in">
+                <component :is="Component"></component>
             </transition>
           </router-view>
         </div>
@@ -73,6 +75,7 @@ import { defineComponent, onMounted, reactive, computed } from "vue";
 import faunadb from "faunadb";
 import Background from "@/components/background.vue";
 import navMenu from "@/components/navMenu.vue";
+import {dataStore} from "./store/data"
 interface Hsla {
   h: number;
   s: number;
@@ -137,20 +140,44 @@ export default defineComponent({
         console.log(query.value);
       });
     }
-    onMounted(() => apiCall());
+    onMounted(() => console.log(dataStore));
     return { themes, query };
   }
 });
 </script>
 
 <style lang="scss">
-.switch-enter-active,
-.switch-leave-active {
-  transition: opacity 1s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
 }
-.switch-enter,
-.switch-leave-to {
+
+.fade-enter-from,
+.fade-leave-active {
+  transition: 1s ease;
   opacity: 0;
+}
+
+.page-enter {
+  display: none;
+}
+.page-enter-to {
+    animation: fade 1s forwards;
+}
+.page-leave {
+  opacity: 1;
+}
+.page-leave-active {
+  transition: 1s;
+  opacity: 0;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @font-face {
   font-family: "IBM Plex Sans";

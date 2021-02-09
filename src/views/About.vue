@@ -92,12 +92,12 @@ export default defineComponent({
   &:focus {
     outline: none;
   }
-  &:active{
+  &:active {
     transition: 0.01s !important;
     transform: scale(0.99) !important;
     box-shadow: 0 0 1px 1px black !important;
   }
-  &:hover{
+  &:hover {
     transform: scale(1.02);
     box-shadow: 0 0 6px 3px black;
   }
