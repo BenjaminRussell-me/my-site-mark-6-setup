@@ -21,9 +21,7 @@
         </button>
       </router-link>
       <div id="socialButtonGrid">
-        <social-button :icon="0">
-
-        </social-button>
+        <social-button :icon="0"> </social-button>
         <social-button
           :color="{ h: 194, s: 82, l: 30 }"
           :icon="1"

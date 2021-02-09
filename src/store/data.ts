@@ -1,21 +1,22 @@
-import {Store} from "./main";
+import { Store } from "./main";
 import faunadb from "faunadb";
 const q = faunadb.query;
+const query = { value: {} };
 
-interface Result extends Object {
-    resultData: Record<string, any>
+
+interface Api extends Object {
+  data: object;
 }
 
-class DataStore extends Store<Result> {
-    protected data (): Result {
-        return {
-            resultData: {
-                test: 0
-            }
-        };
-    }
-    apiCall() {
-        const client = new faunadb.Client({
+class DataStore extends Store<Api> {
+  protected data(): Api {
+    return {
+      data: {}
+    };
+  }
+
+  getData() {
+      const client = new faunadb.Client({
         secret: process.env.VUE_APP_KEY
       });
       const idk = client.query(
@@ -24,9 +25,11 @@ class DataStore extends Store<Result> {
           q.Lambda("X", q.Get(q.Var("X")))
         )
       );
-      idk.then((response) => {
-        this.state.resultData = response
-      });}
+      idk.then( (response) => {
+        this.state.data = response
+        },
+      );
+  }
 }
 
-export const dataStore: DataStore = new DataStore()
+export const dataStore = new DataStore();

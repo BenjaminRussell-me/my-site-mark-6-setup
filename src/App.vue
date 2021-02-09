@@ -20,22 +20,40 @@
             viewBox="0 0 230.709 265.714"
           >
             <defs>
-              <linearGradient id="myGradient" x1="16.139" y1="-321.91" x2="265.569" y2="-370.768" gradientTransform="translate(92.724 506.057) rotate(-18.661)" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#448abf"/>
-                <stop offset="0.61" stop-color="#44a6af"/>
-                <stop offset="1" stop-color="#44bba3"/>
+              <linearGradient
+                id="myGradient"
+                x1="16.139"
+                y1="-321.91"
+                x2="265.569"
+                y2="-370.768"
+                gradientTransform="translate(92.724 506.057) rotate(-18.661)"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0" stop-color="#448abf" />
+                <stop offset="0.61" stop-color="#44a6af" />
+                <stop offset="1" stop-color="#44bba3" />
               </linearGradient>
             </defs>
             <g>
-              <polygon points="115.923 5.773 5.581 68.823 5.013 195.907 114.786 259.94 225.128 196.891 225.696 69.807 115.923 5.773" style="fill: url(#myGradient)"/>
-              <path d="M114.761,265.714,0,198.771.594,65.914,115.948,0,230.709,66.943,230.115,199.8ZM10.025,193.042l104.788,61.125,105.328-60.186.543-121.31L115.9,11.547,10.568,71.732Z" style="fill: #323941"/>
-              <path d="M176.805,155.857a63.021,63.021,0,0,1-121.9,0Z" style="fill: #323941"/>
-              <circle cx="175.854" cy="106.857" r="17" style="fill: #323941"/>
-              <circle cx="55.854" cy="105.857" r="17" style="fill: #323941"/>
+              <polygon
+                points="115.923 5.773 5.581 68.823 5.013 195.907 114.786 259.94 225.128 196.891 225.696 69.807 115.923 5.773"
+                style="fill: url(#myGradient)"
+              />
+              <path
+                d="M114.761,265.714,0,198.771.594,65.914,115.948,0,230.709,66.943,230.115,199.8ZM10.025,193.042l104.788,61.125,105.328-60.186.543-121.31L115.9,11.547,10.568,71.732Z"
+                style="fill: #323941"
+              />
+              <path
+                d="M176.805,155.857a63.021,63.021,0,0,1-121.9,0Z"
+                style="fill: #323941"
+              />
+              <circle cx="175.854" cy="106.857" r="17" style="fill: #323941" />
+              <circle cx="55.854" cy="105.857" r="17" style="fill: #323941" />
             </g>
           </svg>
           <h5>BenajminRussell.me</h5>
         </div>
+                <button @click="inc()">Clicked {{ countState.count }} times.</button>
         <keep-alive>
           <nav-menu :theme="themes.dynamicTheme"></nav-menu>
         </keep-alive>
@@ -61,7 +79,7 @@
             v-slot="{ Component }"
           >
             <transition name="fade" mode="out-in">
-                <component :is="Component"></component>
+              <component :is="Component"></component>
             </transition>
           </router-view>
         </div>
@@ -75,7 +93,8 @@ import { defineComponent, onMounted, reactive, computed } from "vue";
 import faunadb from "faunadb";
 import Background from "@/components/background.vue";
 import navMenu from "@/components/navMenu.vue";
-import {dataStore} from "./store/data"
+import { dataStore } from "./store/data";
+import {clickStore} from "./store/click-store";
 interface Hsla {
   h: number;
   s: number;
@@ -101,6 +120,12 @@ interface Content {
 export default defineComponent({
   components: { Background, navMenu },
   setup() {
+    const inc = () => {
+                clickStore.incrementCount()
+
+                // should throw a warning and don't mutate the store
+                clickStore.getState().count++
+    }
     const q = faunadb.query;
     const themes: Themes = reactive({
       themeControl: false,
@@ -141,7 +166,7 @@ export default defineComponent({
       });
     }
     onMounted(() => console.log(dataStore));
-    return { themes, query };
+    return { themes, query,countState: clickStore.getState(),inc };
   }
 });
 </script>
@@ -162,7 +187,7 @@ export default defineComponent({
   display: none;
 }
 .page-enter-to {
-    animation: fade 1s forwards;
+  animation: fade 1s forwards;
 }
 .page-leave {
   opacity: 1;
@@ -249,7 +274,7 @@ html {
       height: 5px;
     }
     #displayContent {
-          overflow-y: auto;
+      overflow-y: auto;
       padding: 1rem 1rem 4rem 1rem;
       display: grid;
     }
@@ -314,15 +339,14 @@ em {
 </style>
 
 <style scoped lang="scss">
-
-#logoHolder{
+#logoHolder {
   align-self: center;
   height: 70px;
   grid-column-gap: 1rem;
   display: grid;
   grid-template-columns: auto 1fr;
   place-items: center;
-  svg{
+  svg {
     height: 100%;
   }
 }

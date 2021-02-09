@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="switch">
-      <input type="checkbox">
+      <input type="checkbox" />
       <span class="slider round"></span>
     </label>
   </div>
@@ -9,10 +9,8 @@
 
 <script>
 export default {
-name: "themeController"
-}
+  name: "themeController"
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

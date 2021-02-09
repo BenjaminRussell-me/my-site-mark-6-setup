@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <router-link :to="'/Content'">
-    <button>back</button>
+      <button>back</button>
     </router-link>
     <h1>{{ query.value?.data?.title }}</h1>
     <div>

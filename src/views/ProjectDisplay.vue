@@ -1,7 +1,7 @@
 <template>
   <div id="project">
     <router-link :to="'/Projects'">
-    <button>back</button>
+      <button>back</button>
     </router-link>
     <h1>{{ query.value?.data?.title }}</h1>
     <ProjectsContent :projectName="projectName"></ProjectsContent>

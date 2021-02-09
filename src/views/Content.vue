@@ -21,8 +21,8 @@ export default defineComponent({
   components: {
     decoratedLink
   },
-  props:{
-    theme:{
+  props: {
+    theme: {
       type: Object
     }
   },
