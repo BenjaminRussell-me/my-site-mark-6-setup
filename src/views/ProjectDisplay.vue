@@ -12,6 +12,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from "vue";
 import faunadb from "faunadb";
+import {dataStore} from '../store/data'
 import marked from "marked";
 import DOMPurify from "dompurify";
 import ProjectsContent from "@/components/projects/ProjectsContent.vue";
@@ -19,7 +20,8 @@ export default defineComponent({
   name: "ProjectDisplay",
   props: {
     projectName: {
-      type: String //comes from vue router
+      type: String, //comes from vue router
+      required: true
     }
   },
   components: {
@@ -49,7 +51,7 @@ export default defineComponent({
       });
     }
 
-    onMounted(() => apiCall());
+    onMounted(() => dataStore.getData(false, 'all_projects', props.projectName));
     return { query, markdown };
   }
 });

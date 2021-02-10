@@ -15,20 +15,30 @@ class DataStore extends Store<Api> {
     };
   }
 
-  getData() {
+  getData(pullAll: boolean, from: any, itemName: string|null ) {
       const client = new faunadb.Client({
         secret: process.env.VUE_APP_KEY
       });
-      const idk = client.query(
-        q.Map(
-          q.Paginate(q.Match(q.Index("all_projects"))),
+      if (pullAll) {
+        const query = client.query(
+       q.Map(
+          q.Paginate(q.Match(q.Index(from))),
           q.Lambda("X", q.Get(q.Var("X")))
         )
       );
-      idk.then( (response) => {
+      query.then( (response) => {
         this.state.data = response
         },
       );
+      }else {
+       const idk = client.query(
+        q.Get(q.Match(q.Index("projects_by_id"), itemName || ""))
+      );
+      idk.then( (response) => {
+        this.state.data = response
+      });        
+
+      }
   }
 }
 

@@ -3,7 +3,7 @@
     <div class="hexGrid">
       <div
         class="hexItem"
-        v-for="(item, index) in projects.data"
+        v-for="(item, index) in dataState.data.data"
         :key="index"
         :path="`/Projects/Project?projectName=${item.data.id}`"
       >
@@ -20,7 +20,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, onMounted } from "vue";
+import {dataStore} from '../store/data'
 export default defineComponent({
   name: "Projects",
   components: {},
@@ -41,7 +42,9 @@ export default defineComponent({
       projectData.title = title;
       projectData.open = true;
     }
-    return { projectData, openProject };
+
+    onMounted(() => dataStore.getData(true,'all_projects', null));
+    return { projectData, openProject, dataState: dataStore.getState()};
   }
 });
 </script>

@@ -53,7 +53,6 @@
           </svg>
           <h5>BenajminRussell.me</h5>
         </div>
-                <button @click="inc()">Clicked {{ countState.count }} times.</button>
         <keep-alive>
           <nav-menu :theme="themes.dynamicTheme"></nav-menu>
         </keep-alive>
@@ -74,7 +73,7 @@
         <div id="displayContent">
           <router-view
             :theme="themes.dynamicTheme"
-            :projects="query.value"
+
             :hsla="themes.dark.hsla"
             v-slot="{ Component }"
           >
@@ -90,11 +89,9 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, computed } from "vue";
-import faunadb from "faunadb";
 import Background from "@/components/background.vue";
 import navMenu from "@/components/navMenu.vue";
-import { dataStore } from "./store/data";
-import {clickStore} from "./store/click-store";
+
 interface Hsla {
   h: number;
   s: number;
@@ -120,14 +117,7 @@ interface Content {
 export default defineComponent({
   components: { Background, navMenu },
   setup() {
-    const inc = () => {
-                clickStore.incrementCount()
-
-                // should throw a warning and don't mutate the store
-                clickStore.getState().count++
-    }
-    const q = faunadb.query;
-    const themes: Themes = reactive({
+        const themes: Themes = reactive({
       themeControl: false,
       dynamicTheme: computed(() => {
         if (!themes.themeControl) {
@@ -146,27 +136,11 @@ export default defineComponent({
         hsla: { h: 185, s: 100, l: 45, a: 1 },
         accent: { h: 185, s: 100, l: 45, a: 1 },
         textColor: { h: 185, s: 100, l: 45, a: 1 },
-        isDark: true
+      isDark: true
       }
     });
-    const query = reactive({ value: {} });
-    function apiCall() {
-      const client = new faunadb.Client({
-        secret: process.env.VUE_APP_KEY
-      });
-      const idk = client.query(
-        q.Map(
-          q.Paginate(q.Match(q.Index("all_projects"))),
-          q.Lambda("X", q.Get(q.Var("X")))
-        )
-      );
-      idk.then(function(response) {
-        query.value = response;
-        console.log(query.value);
-      });
-    }
-    onMounted(() => console.log(dataStore));
-    return { themes, query,countState: clickStore.getState(),inc };
+    
+    return { themes };
   }
 });
 </script>
