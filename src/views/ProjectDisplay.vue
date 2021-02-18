@@ -1,17 +1,16 @@
 <template>
   <div id="project">
     <router-link :to="'/Projects'">
-      <button>back</button>
+      <button>To Projects</button>
     </router-link>
-    <h1>{{ query.value?.data?.title }}</h1>
+    <h1>{{ dataState?.data?.data?.title }}</h1>
     <ProjectsContent :projectName="projectName"></ProjectsContent>
-    <div v-html="markdown.text"></div>
+    <div v-html="useMarkdown(dataState?.data?.data?.about)"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from "vue";
-import faunadb from "faunadb";
+import {defineComponent, onMounted} from "vue";
 import {dataStore} from '../store/data'
 import marked from "marked";
 import DOMPurify from "dompurify";
@@ -28,31 +27,11 @@ export default defineComponent({
     ProjectsContent
   },
   setup(props) {
-    const query = reactive({ value: {} });
-    const q = faunadb.query;
-    const markdown = reactive({ text: "" });
-    function useMarkdown(x: any) {
-      const sanitized = DOMPurify.sanitize(x.data.about);
-      markdown.text = marked(sanitized);
+    function useMarkdown (text: string) {
+     return marked(DOMPurify.sanitize(text));
     }
-    function apiCall() {
-      const client = new faunadb.Client({
-        secret: process.env.VUE_APP_KEY
-      });
-      const idk = client.query(
-        q.Get(q.Match(q.Index("projects_by_id"), props.projectName || ""))
-      );
-      idk.then(function(response) {
-        query.value = response;
-        let x: any = {};
-        x = response;
-        x.data.about;
-        useMarkdown(x);
-      });
-    }
-
-    onMounted(() => dataStore.getData(false, 'all_projects', props.projectName));
-    return { query, markdown };
+    onMounted(() => {dataStore.getData(false, 'projects_by_id', props.projectName)});
+    return {useMarkdown, dataState: dataStore.getState() };
   }
 });
 </script>

@@ -3,21 +3,23 @@
     <router-link :to="'/Content'">
       <button>back</button>
     </router-link>
-    <h1>{{ query.value?.data?.title }}</h1>
+    <h1>{{ dataState?.data?.data?.title }}</h1>
     <div>
-      <p>{{ query.value?.data?.about }}</p>
+      <p>{{ dataState?.data?.data?.about }}</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from "vue";
+import { dataStore } from "../store/data"
 import faunadb from "faunadb";
 export default defineComponent({
   name: "ContentDisplay",
   props: {
     contentName: {
-      type: String //comes from vue router
+      type: String, //comes from vue router
+      required: true,
     }
   },
   setup(props) {
@@ -35,8 +37,8 @@ export default defineComponent({
         console.log(query.value);
       });
     }
-    onMounted(() => apiCall());
-    return { query };
+    onMounted(() => {dataStore.getData(false,"content_by_id", props.contentName)});
+    return { query, dataState: dataStore.getState()};
   }
 });
 </script>

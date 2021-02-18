@@ -5,14 +5,14 @@
         class="hexItem"
         v-for="(item, index) in dataState.data.data"
         :key="index"
-        :path="`/Projects/Project?projectName=${item.data.id}`"
+        :path="`/Projects/Project?projectName=${item?.data?.id}`"
       >
         <router-link
-          :to="`/Projects/Project?projectName=${item.data.id}`"
+          :to="`/Projects/Project?projectName=${item?.data?.id}`"
           class="hexContent"
         >
-          <h5>{{ item.data.title }}</h5>
-          <p>{{ item.data.date }}</p>
+          <h5>{{ item?.data?.title }}</h5>
+          <p>{{ item?.data?.date }}</p>
         </router-link>
       </div>
     </div>

@@ -17,7 +17,7 @@ class DataStore extends Store<Api> {
 
   getData(pullAll: boolean, from: any, itemName: string|null ) {
       const client = new faunadb.Client({
-        secret: process.env.VUE_APP_KEY
+        secret: process.env.VUE_APP_API
       });
       if (pullAll) {
         const query = client.query(
@@ -32,7 +32,7 @@ class DataStore extends Store<Api> {
       );
       }else {
        const idk = client.query(
-        q.Get(q.Match(q.Index("projects_by_id"), itemName || ""))
+        q.Get(q.Match(q.Index(from), itemName || ""))
       );
       idk.then( (response) => {
         this.state.data = response
