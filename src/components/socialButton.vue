@@ -1,5 +1,5 @@
 <template>
-  <div class="socialButton">
+  <a class="socialButton" :href="link" target="_blank" rel="noopener noreferrer">
     <div class="hex">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 221.703 192">
         <g id="hex_2" data-name="Layer 2">
@@ -83,7 +83,7 @@
         </g>
       </svg>
     </div>
-  </div>
+  </a>
 </template>
 
 <script lang="ts">
@@ -93,6 +93,10 @@ export default {
     icon: {
       type: Number,
       default: 0
+    },
+    link: {
+      type: String,
+      required: true
     },
     color: {
       type: Object,

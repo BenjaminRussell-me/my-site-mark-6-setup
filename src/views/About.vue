@@ -21,18 +21,26 @@
         </button>
       </router-link>
       <div id="socialButtonGrid">
-        <social-button :icon="0"> </social-button>
+        <social-button 
+         :icon="0"
+         link="https://www.instagram.com/benjaminrussell.me/"
+        >
+        </social-button>
         <social-button
           :color="{ h: 194, s: 82, l: 30 }"
           :icon="1"
+
+          link="https://www.youtube.com/channel/UCulLR-tPpj_sx8gtEIEU4Og"
         ></social-button>
         <social-button
           :color="{ h: 180, s: 82, l: 30 }"
           :icon="2"
+          link="https://twitter.com/BenR_me"
         ></social-button>
         <social-button
           :color="{ h: 165, s: 82, l: 30 }"
           :icon="3"
+          link="https://codepen.io/benjamin-me/pens/public"
         ></social-button>
       </div>
       <button class="contactButton" :style="gradient">
@@ -73,11 +81,17 @@ export default defineComponent({
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 3rem;
   align-self: center;
+  @media screen and (max-width: 1080px) {
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
 }
 #socialButtonGrid {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  grid-gap: 1rem;
   height: 300px;
 }
 .contactButton {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="projectsWrapper">
     <div class="hexGrid">
       <div
         class="hexItem"
@@ -50,36 +50,28 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-$amount: 4;
+#projectsWrapper{
+display: grid;
+}
 .hexGrid {
   --counter: 1;
   display: grid;
-  grid-template-columns: repeat($amount, 1fr, 2fr) 1fr;
-  margin: 0;
+  grid-template-columns: repeat(12, 1fr);
+  margin: -10vh 0 0 0;
   padding: 0;
-  grid-gap: 2.5rem 5rem;
+  grid-gap: 2.5vw 5vw;
+  align-self: center;
+  @media screen and (max-width: 1080px){
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1.5vw 2vw;
+  }
 }
 .hexItem {
   position: relative;
-  grid-column: 1 / span 3;
-  grid-row: calc(var(--counter) + var(--counter)) / span 2;
-  filter: drop-shadow(0 0 10px rgba(#444, 0.08));
+  grid-column:span 3;
+  filter: drop-shadow(0 0 5px black);
   height: 0;
   padding-bottom: 90%;
-  @for $i from 1 through $amount {
-    &:nth-of-type(#{$amount}n + #{$i}) {
-      grid-column: #{$i + $i - 1} / span 3;
-      @if $i % 2 == 0 {
-        grid-row: calc(var(--counter) + var(--counter) - 1) / span 2;
-      }
-    }
-  }
-
-  @for $i from 1 through 20 {
-    &:nth-of-type(n + #{$i * $amount + 1}) {
-      --counter: #{$i + 1};
-    }
-  }
 }
 
 .hexContent {
