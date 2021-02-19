@@ -3,7 +3,7 @@
     <div class="hexGrid">
       <div
         class="hexItem"
-        v-for="(item, index) in dataState.data.data"
+        v-for="(item, index) in dataState?.data?.all_projects?.data"
         :key="index"
         :path="`/Projects/Project?projectName=${item?.data?.id}`"
       >
@@ -43,7 +43,7 @@ export default defineComponent({
       projectData.open = true;
     }
 
-    onMounted(() => dataStore.getData(true,'all_projects', null));
+    onMounted(() => {dataStore.getData(true,'all_projects', null)});
     return { projectData, openProject, dataState: dataStore.getState()};
   }
 });

@@ -1,17 +1,27 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Store } from "./main";
 import faunadb from "faunadb";
 const q = faunadb.query;
 const query = { value: {} };
 
+interface MyApi {
+
+all_projects: object;
+all_content: object;
+[key: string]: any
+}
 
 interface Api extends Object {
-  data: object;
+  data: MyApi;
 }
 
 class DataStore extends Store<Api> {
   protected data(): Api {
     return {
-      data: {}
+      data: {
+        all_content:{},
+        all_projects:{}
+      }
     };
   }
 
@@ -27,7 +37,7 @@ class DataStore extends Store<Api> {
         )
       );
       query.then( (response) => {
-        this.state.data = response
+        this.state.data[from] = response
         },
       );
       }else {
@@ -35,7 +45,9 @@ class DataStore extends Store<Api> {
         q.Get(q.Match(q.Index(from), itemName || ""))
       );
       idk.then( (response) => {
-        this.state.data = response
+        if(itemName !== null){
+        this.state.data[from][itemName] = response
+        }
       });        
 
       }

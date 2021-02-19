@@ -71,6 +71,7 @@
           }"
         ></div>
         <div id="displayContent">
+        <div id="displayContentHolder">
           <router-view
             :theme="themes.dynamicTheme"
 
@@ -81,6 +82,7 @@
               <component :is="Component"></component>
             </transition>
           </router-view>
+        </div>
         </div>
       </div>
     </div>
@@ -251,6 +253,11 @@ html {
       overflow-y: auto;
       padding: 1rem 1rem 4rem 1rem;
       display: grid;
+      box-sizing: border-box;
+      #displayContentHolder {
+      display: grid;
+      padding-bottom: 2rem;
+      }
     }
   }
 }
