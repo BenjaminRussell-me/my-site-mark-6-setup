@@ -1,2 +1,0 @@
-command = "npm run build && cp _redirects dist/_redirects"
-publish = "dist"
