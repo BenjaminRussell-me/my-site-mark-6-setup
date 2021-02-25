@@ -3,9 +3,9 @@
     <router-link :to="'/Projects'">
       <button>To Projects</button>
     </router-link>
-    <h1>{{ dataState?.data?.data?.title }}</h1>
+    <h1>{{ dataState?.data?.projects[projectName]?.data?.title }}</h1>
     <ProjectsContent :projectName="projectName"></ProjectsContent>
-    <div v-html="useMarkdown(dataState?.data?.data?.about)"></div>
+    <div v-html="useMarkdown(dataState?.data?.projects[projectName]?.data.about)"></div>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default defineComponent({
     function useMarkdown (text: string) {
      return marked(DOMPurify.sanitize(text));
     }
-    onMounted(() => {dataStore.getData(false, 'projects_by_id', props.projectName)});
+    onMounted(() => {dataStore.getData(false, 'projects_by_id','projects',props.projectName)});
     return {useMarkdown, dataState: dataStore.getState() };
   }
 });
@@ -44,6 +44,9 @@ export default defineComponent({
 p {
   img {
     width: 100%;
+    box-shadow: 0 0 5px 3px black;
+    margin: 1rem 0 1rem 0;
+    cursor: pointer;
   }
 }
 </style>

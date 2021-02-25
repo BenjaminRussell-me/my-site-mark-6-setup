@@ -115,17 +115,16 @@
             <h3>
               About
             </h3>
-            <p>
-              I am a web developer / designer and have been working as such for
-              {{ new Date().getFullYear() - 2018 }} years. I love to combine my
-              skills and interests in Javascript, Css, design, SVG, layout,
-              WebAssembly, animation UI and more. To create functionally
-              beautiful products.
-            </p>
-            <p>
-              Wanna work on something together? Let me know! I'm always down for
-              a interesting challenge.
-            </p>
+              <p>
+                I have been working as a developer / designer for the last
+                {{ new Date().getFullYear() - 2018 }} years. I strive to combine my skills
+                and interests in Javascript, Css, design, SVG, layout, WebAssembly,
+                animation UI and more. To create functional and visually interesting products.
+              </p>
+              <p>
+                Wanna work on something together? Let me know! I'm always down for a new
+                interesting challenge.
+              </p>
           </div>
         </div>
         <div id="resumeFooter">

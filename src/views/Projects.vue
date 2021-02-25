@@ -3,7 +3,7 @@
     <div class="hexGrid">
       <div
         class="hexItem"
-        v-for="(item, index) in dataState?.data?.all_projects?.data"
+        v-for="(item, index) in dataState?.data?.projects?.data"
         :key="index"
         :path="`/Projects/Project?projectName=${item?.data?.id}`"
       >
@@ -43,7 +43,7 @@ export default defineComponent({
       projectData.open = true;
     }
 
-    onMounted(() => {dataStore.getData(true,'all_projects', null)});
+    onMounted(() => {dataStore.getData(true,'all_projects','projects',null)});
     return { projectData, openProject, dataState: dataStore.getState()};
   }
 });
@@ -57,7 +57,7 @@ display: grid;
   --counter: 1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  margin: -10vh 0 0 0;
+  margin: -10vh 1vw 0 1vw;
   padding: 0;
   grid-gap: 2.5vw 5vw;
   align-self: center;
@@ -71,7 +71,17 @@ display: grid;
   grid-column:span 3;
   filter: drop-shadow(0 0 5px black);
   height: 0;
+  transition: .3s;
   padding-bottom: 90%;
+    &:active {
+    transition: 0.01s !important;
+    transform: scale(0.99) !important;
+    filter: drop-shadow(0 0 3px black) !important;
+  }
+  &:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 6px black);
+  }
 }
 
 .hexContent {

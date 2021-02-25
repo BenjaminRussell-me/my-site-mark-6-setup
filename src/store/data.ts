@@ -6,8 +6,8 @@ const query = { value: {} };
 
 interface MyApi {
 
-all_projects: object;
-all_content: object;
+projects: object;
+content: object;
 [key: string]: any
 }
 
@@ -19,13 +19,13 @@ class DataStore extends Store<Api> {
   protected data(): Api {
     return {
       data: {
-        all_content:{},
-        all_projects:{}
+        content:{},
+        projects:{}
       }
     };
   }
 
-  getData(pullAll: boolean, from: any, itemName: string|null ) {
+  getData(pullAll: boolean, from: any, source: string|null, itemName: string|null ) {
       const client = new faunadb.Client({
         secret: process.env.VUE_APP_API
       });
@@ -37,7 +37,9 @@ class DataStore extends Store<Api> {
         )
       );
       query.then( (response) => {
-        this.state.data[from] = response
+        if (source !== null) {
+          this.state.data[source] = response
+        }
         },
       );
       }else {
@@ -45,8 +47,8 @@ class DataStore extends Store<Api> {
         q.Get(q.Match(q.Index(from), itemName || ""))
       );
       idk.then( (response) => {
-        if(itemName !== null){
-        this.state.data[from][itemName] = response
+        if(itemName !== null && source !== null){
+        this.state.data[source][itemName] = response
         }
       });        
 

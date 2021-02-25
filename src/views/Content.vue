@@ -1,7 +1,7 @@
 <template>
   <div>
     <decorated-link
-      v-for="(item, index) in dataState?.data?.data"
+      v-for="(item, index) in dataState?.data?.content?.data"
       :key="index"
       :path="`/Content/ContDisplay?contentName=${item?.data?.id}`"
       :date="item?.data?.date"
@@ -27,7 +27,7 @@ export default defineComponent({
     }
   },
   setup() {
-    onMounted(() => {dataStore.getData(true,"all_content",null)})
+    onMounted(() => {dataStore.getData(true,"all_content",'content',null)})
     return { dataState: dataStore.getState() };
   }
 });

@@ -3,9 +3,9 @@
     <router-link :to="'/Content'">
       <button>back</button>
     </router-link>
-    <h1>{{ dataState?.data?.data?.title }}</h1>
+    <h1>{{ dataState?.data?.content[contentName]?.data?.title }}</h1>
     <div>
-      <p>{{ dataState?.data?.data?.about }}</p>
+      <p>{{ dataState?.data?.content[contentName]?.data?.about }}</p>
     </div>
   </div>
 </template>
@@ -13,7 +13,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from "vue";
 import { dataStore } from "../store/data"
-import faunadb from "faunadb";
 export default defineComponent({
   name: "ContentDisplay",
   props: {
@@ -23,22 +22,8 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const q = faunadb.query;
-    const query = reactive({ value: {} });
-    function apiCall() {
-      const client = new faunadb.Client({
-        secret: process.env.VUE_APP_KEY
-      });
-      const idk = client.query(
-        q.Get(q.Match(q.Index("content_by_id"), props.contentName || ""))
-      );
-      idk.then(function(response) {
-        query.value = response;
-        console.log(query.value);
-      });
-    }
-    onMounted(() => {dataStore.getData(false,"content_by_id", props.contentName)});
-    return { query, dataState: dataStore.getState()};
+    onMounted(() => {dataStore.getData(false,"content_by_id","content", props.contentName)});
+    return {dataState: dataStore.getState()};
   }
 });
 </script>
