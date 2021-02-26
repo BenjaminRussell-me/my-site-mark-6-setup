@@ -1,4 +1,5 @@
 <template>
+<div id="backgroundHolder">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -757,14 +758,36 @@
       </g>
     </g>
   </svg>
+  <div id="shifter" :class="'darken'"></div>
+</div>
 </template>
 
 <script>
 export default {
-  name: "background"
+  name: "background",
+  props: {
+    theme: {
+      type: Object,
+    }
+  }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+#backgroundHolder {
+  display: grid;
+  #shifter {
+    grid-area: 1/1/1/1;
+    height: 100%;
+    width: 100%;
+  }
+  .lighten {
+      background:hsla(100,0%, 100%, 0.5);
+  }
+  .darken {
+    background:hsla(245, 85%, 3%, 0.5);
+    backdrop-filter:brightness(20%);
+  }
+}
 svg {
   grid-area: 1/1/1/1;
   height: 100vh;

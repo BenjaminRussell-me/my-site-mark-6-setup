@@ -7,7 +7,6 @@
   >
     <div id="backgroundHolder">
       <background :theme="themes.dynamicTheme"></background>
-      <div id="backgroundMuter"></div>
     </div>
     <div id="contentHolder">
       <div id="topGrid">
@@ -93,7 +92,7 @@
 import { defineComponent, onMounted, reactive, computed } from "vue";
 import Background from "@/components/background.vue";
 import navMenu from "@/components/navMenu.vue";
-
+import {themeStore} from "@/store/theme"
 interface Hsla {
   h: number;
   s: number;
@@ -142,7 +141,7 @@ export default defineComponent({
       }
     });
     
-    return { themes };
+    return { themes, themeState: themeStore.getState() };
   }
 });
 </script>
@@ -203,13 +202,7 @@ html {
   width: 100vw;
   height: 100vh;
   display: grid;
-  #backgroundMuter {
-    height: 100%;
-    width: 100%;
-    grid-area: 1/1/1/1;
-    background: hsla(100, 0%, 100%, 0.6);
-    backdrop-filter: brightness(100%);
-  }
+
 }
 #mainGrid {
   display: grid;
