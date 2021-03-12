@@ -8,7 +8,7 @@
     <div id="backgroundHolder">
       <background :theme="themes.dynamicTheme"></background>
     </div>
-    <div id="contentHolder">
+    <div style="display: none;" id="contentHolder">
       <div id="topGrid">
         <div id="logoHolder">
           <svg
